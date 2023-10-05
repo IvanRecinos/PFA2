@@ -19,7 +19,7 @@ aplicacion.use(session({
     cookie: { maxAge: (86400000) }
 }));
 
-const direcciones = require('./routes/direcciones');
+const direcciones = require('./routes/direcciones').default;
 aplicacion.use('/', direcciones)
 
 
