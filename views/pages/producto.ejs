@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="static/css/producto.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+
+        <section>
+            <center>
+                <h1>Producto</h1>
+            </center>
+            <div class="sect">
+                <form action="">
+                    <div class="form_contenido">
+                        <div class="descripcion">
+                            <div>
+                                <label for="nombre">Producto:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Descripción:</label>
+                                <textarea name="" id="" cols="30" rows="7"></textarea>
+                            </div>
+                            <div>
+                                <label for="nombre">Dirección:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Correo Electrónico:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Teléfono:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Cantidad:</label>
+                                <input type="number">
+                            </div>
+                            <div>
+                                <label for="nombre">Tipo de pago:</label>
+                                <select name="" id="">
+                                    <option value="">Contra entrega</option>
+                                    <option value="">Credito</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="imagen">
+                            <div class="img"></div>
+                        </div>
+                    </div>
+                    <center>
+                        <button>Realizar Pedido</button>
+                    </center>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="static/css/index.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+
+        <section>
+            <div class="buscador">
+                <input 
+                    type="text" 
+                    name="buscador" 
+                    id="buscador"
+                    placeholder="Ingresa tu pastel preferido..."
+                >
+            </div>
+        </section>
+
+        <section>
+            <div class="catalogo">
+                <div class="opciones">
+                    <div class="opciones_pasteles"></div>
+                    <div class="opciones_pasteles"></div>
+                </div>
+                <div class="opciones">
+                    <div class="opciones_pasteles"></div>
+                    <div class="opciones_pasteles"></div>
+                </div>
+                <div class="opciones">
+                    <div class="opciones_pasteles"></div>
+                    <div class="opciones_pasteles"></div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

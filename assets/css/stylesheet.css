@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kanit:wght@300&family=Montserrat:wght@500&family=Rajdhani:wght@300&family=Rubik&display=swap');
+body{
+    padding: 0;
+    margin: -16px 0;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Rubik', sans-serif;
+}

@@ -6,9 +6,10 @@ const MemoryStore = require('memorystore')(session);
 const crypto = require('crypto');
 
 aplicacion.set('view engine', 'ejs');
-aplicacion.use('/static',express.static('assets'));
+aplicacion.use('/static', express.static('assets'));
 aplicacion.use(bodyParser.json());
 aplicacion.use(bodyParser.urlencoded({ extended: true }));
+/*
 aplicacion.use(session({
     secret: crypto.randomBytes(20).toString('hex'), 
     resave: false, 
@@ -18,9 +19,9 @@ aplicacion.use(session({
     }),
     cookie: { maxAge: (86400000) }
 }));
-
-const direcciones = require('./routes/direcciones').default;
-aplicacion.use('/', direcciones)
+*/
+const direcciones = require('./routes/direcciones');
+aplicacion.use('/', direcciones);
 
 
 

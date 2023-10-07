@@ -1,0 +1,32 @@
+nav ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    align-items: center;
+    background: linear-gradient(to right, #7927EF, #FF66C4);
+    padding: 15px 0;
+}
+
+li {
+    list-style: none;
+}
+
+li:first-child {
+    margin-left: 25px;
+    margin-right: auto; 
+}
+
+li:last-child {
+    margin-right: 50px; 
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    color:white;
+}
+
+
