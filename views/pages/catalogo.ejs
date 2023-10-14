@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="static/css/catalogo.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+
+        <center>
+            <h1>Catálogo</h1>
+
+            <section>
+                <div class="menu">
+                    <div class="opciones" id="opt1" onclick="catalogo1()">Catálogo 1</div>
+                    <div class="opciones" id="opt2" onclick="catalogo2()">Catálogo 2</div>
+                    <div class="opciones" id="opt3" onclick="catalogo3()">Catálogo 3</div>
+                    <div class="opciones" id="opt4" onclick="catalogo4()">Catálogo 4</div>
+                    <div class="opciones" id="opt5" onclick="catalogo5()">Catálogo 5</div>
+                </div>
+                <div class="pestañas">
+                    <div class="opt" id="no1">
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                    </div>
+                    <div class="opt" id="no2">
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                    </div>
+                    <div class="opt" id="no3">
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                    </div>
+                    <div class="opt" id="no4">
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                    </div>
+                    <div class="opt" id="no5">
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                        <div class="productos"></div>
+                    </div>
+                </div>
+            </section>
+        </center>
+    </body>
+    <script src="static/js/catalogo.js"></script>
+</html>
