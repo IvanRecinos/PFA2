@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="static/css/compra.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+
+        <section>
+            <center>
+                <h1>Compra</h1>
+            </center>
+            <div class="sect">
+                <form action="">
+                    <div class="producto">
+                        <div>
+                            <label for="producto">Producto:</label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <textarea name="" id="" cols="80" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form_contenido">
+                        <div class="descripcion">
+                            <div class="datos_cliente">
+                                <div>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text">
+                                </div>
+                                <div>
+                                    <label for="apellido">Apellido:</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="nombre">Dirección:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Correo Electrónico:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Teléfono:</label>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="nombre">Cantidad:</label>
+                                <input type="number">
+                            </div>
+                            <div>
+                                <label for="nombre">Tipo de pago:</label>
+                                <select name="" id="">
+                                    <option value="">Contra entrega</option>
+                                    <option value="">Credito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>                            
+                            <div class="imagen">
+                                <div class="img"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <center>
+                        <button>Realizar Pedido</button>
+                    </center>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

@@ -9,8 +9,6 @@ h1{
 }
 
 section .sect{
-    display: flex;
-    justify-content: center;
     margin: 0 auto;
     width: 750px;
     background-color: #ffa4dc;
@@ -22,15 +20,12 @@ form{
     margin: 25px;
 }
 
-.cont_form{
-    display: flex;
-    gap: 55px;
-}
-
 .producto{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    justify-content: center;
+    align-items: center;
 }
 
 .form_contenido{

@@ -6,55 +6,38 @@
     </head>
     <body>
         <%- include('../partials/nav.ejs'); %>
-
         <section>
             <center>
                 <h1>Producto</h1>
             </center>
             <div class="sect">
                 <form action="">
-                    <div class="form_contenido">
-                        <div class="descripcion">
+                    <div class="cont_form">
+                        <div class="producto">
                             <div>
-                                <label for="nombre">Producto:</label>
+                                <label for="producto">Producto:</label>
                                 <input type="text">
                             </div>
-                            <div>
-                                <label for="nombre">Descripción:</label>
+                            <div style="display: flex; flex-direction: column;">
+                                <label for="descripcion">Descripción:</label>
                                 <textarea name="" id="" cols="30" rows="7"></textarea>
                             </div>
                             <div>
-                                <label for="nombre">Dirección:</label>
-                                <input type="text">
-                            </div>
-                            <div>
-                                <label for="nombre">Correo Electrónico:</label>
-                                <input type="text">
-                            </div>
-                            <div>
-                                <label for="nombre">Teléfono:</label>
-                                <input type="text">
-                            </div>
-                            <div>
-                                <label for="nombre">Cantidad:</label>
+                                <label for="cantidad">Catidad:</label>
                                 <input type="number">
                             </div>
-                            <div>
-                                <label for="nombre">Tipo de pago:</label>
-                                <select name="" id="">
-                                    <option value="">Contra entrega</option>
-                                    <option value="">Credito</option>
-                                </select>
+                            <center>
+                                <button type="input">Realizar Pedido</button>
+                            </center>
+                        </div>
+                        <div class="form_contenido">
+                            <div>                            
+                                <div class="imagen">
+                                    <div class="img"></div>
+                                </div>
                             </div>
-                            
                         </div>
-                        <div class="imagen">
-                            <div class="img"></div>
-                        </div>
-                    </div>
-                    <center>
-                        <button>Realizar Pedido</button>
-                    </center>
+                    </div>          
                 </form>
             </div>
         </section>
