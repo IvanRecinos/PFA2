@@ -3,50 +3,67 @@
     <head> 
         <%- include('../partials/header.ejs'); %>
         <link rel="stylesheet" href="static/css/catalogo.css">
+        <link rel="stylesheet" href="static/css/admin/pasteles.css">
     </head>
     <body>
         <%- include('../partials/nav.ejs'); %>
 
         <center>
-            <h1>Catálogo</h1>
+            <h1>Pasteles</h1>
 
             <section>
                 <div class="menu">
-                    <div class="opciones" id="opt1" onclick="catalogo1()">Horneado</div>
-                    <div class="opciones" id="opt2" onclick="catalogo2()">Frío</div>
-                    <div class="opciones" id="opt3" onclick="catalogo3()">Yogurt</div>
-                    <div class="opciones" id="opt4" onclick="catalogo4()">Helado</div>
-                    <div class="opciones" id="opt5" onclick="catalogo5()">Ofertas</div>
+                    <div class="opciones" id="opt1" onclick="catalogo1()">Agregar nuevo Pastel</div>
+                    <div class="opciones" id="opt2" onclick="catalogo2()">Horneado</div>
+                    <div class="opciones" id="opt3" onclick="catalogo3()">Frío</div>
+                    <div class="opciones" id="opt4" onclick="catalogo4()">Yogurt</div>
+                    <div class="opciones" id="opt5" onclick="catalogo5()">Helado</div>
                 </div>
                 <div class="pestañas">
                     <div class="opt" id="no1">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="sect">
+                            <form action="">
+                                <div class="cont_form">
+                                    <div class="producto">
+                                        <div>
+                                            <label for="producto">Producto:</label>
+                                            <input type="text">
+                                        </div>
+                                        <div>
+                                            <label for="categoria">Categoría:</label>
+                                            <select name="" id="">
+                                                <option value="hornado">Horneado</option>
+                                                <option value="frio">Frío</option>
+                                                <option value="yogurt">Yogurt</option>
+                                                <option value="helado">Helado</option>
+                                            </select>
+                                        </div>
+                                        <div >
+                                            <label for="descripcion">Descripción:</label>
+                                            <textarea name="" id="" cols="30" rows="4"></textarea>
+                                        </div>
+                                        <div >
+                                            <label for="ingredientes">Ingredientes:</label>
+                                            <textarea name="" id="" cols="30" rows="4"></textarea>
+                                        </div>
+                                        <div>
+                                            <label for="cantidad">Catidad:</label>
+                                            <input type="number">
+                                        </div>
+                                        <button type="input">Guardar</button>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="form_contenido">
+                                        <div>                            
+                                            <div class="imagen">
+                                                <div class="img"></div>
+                                                <input type="file">
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </div>
-                                </a>
-                            </div>
+                                </div>      
+                            </form>
                         </div>
-                        <div class="productos"></div>
                     </div>
                     <div class="opt" id="no2">
                         <div class="productos"></div>

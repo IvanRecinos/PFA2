@@ -30,6 +30,7 @@ input{
     height: 150px;
     border-radius: 25px;
     background-color: #CB6CE6;
+    transition: transform 0.3s ease;
 }
 
 .opciones_pasteles:hover{
