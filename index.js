@@ -20,8 +20,12 @@ aplicacion.use(session({
     cookie: { maxAge: (86400000) }
 }));
 */
+
 const direcciones = require('./routes/direcciones');
 aplicacion.use('/', direcciones);
+
+const pasteles = require('./middelware/pasteles');
+aplicacion.use(pasteles)
 
 
 

@@ -27,44 +27,48 @@
                                     <div class="producto">
                                         <div>
                                             <label for="producto">Producto:</label>
-                                            <input type="text">
+                                            <input type="text" id="producto" name="producto">
                                         </div>
                                         <div>
                                             <label for="categoria">Categoría:</label>
-                                            <select name="" id="">
-                                                <option value="hornado">Horneado</option>
-                                                <option value="frio">Frío</option>
-                                                <option value="yogurt">Yogurt</option>
-                                                <option value="helado">Helado</option>
+                                            <select name="categoria" id="categoria">
+                                                <%  resultados.forEach(function(resultados) { %> 
+                                                    <option value="<%= resultados.id_categoria %>"><%= resultados.categoria %></option>
+                                                <% }) %>     
                                             </select>
                                         </div>
                                         <div >
                                             <label for="descripcion">Descripción:</label>
-                                            <textarea name="" id="" cols="30" rows="4"></textarea>
+                                            <textarea name="" id="" cols="30" rows="4" id="descripcion" name="descripcion"></textarea>
                                         </div>
                                         <div >
                                             <label for="ingredientes">Ingredientes:</label>
-                                            <textarea name="" id="" cols="30" rows="4"></textarea>
+                                            <textarea name="" id="" cols="30" rows="4" id="ingredientes" name="ingredientes"></textarea>
                                         </div>
                                         <div>
                                             <label for="cantidad">Catidad:</label>
-                                            <input type="number">
+                                            <input type="number" id="cantidad" name="cantidad">
                                         </div>
                                         <button type="input">Guardar</button>
                                     </div>
                                     <div class="form_contenido">
                                         <div>                            
                                             <div class="imagen">
-                                                <div class="img"></div>
-                                                <input type="file">
-                                            </div>
-                                            
+                                                <div class="img">
+                                                    <center>
+                                                        <img class="img_cont" id="imagenPrevia" src="" alt="Previsualización de la imagen">
+                                                    </center>
+                                                </div>
+                                                <input type="file" id="archivo" name="archivo" accept="image/*" onchange="previsualizarImagen()">
+
+                                            </div>  
                                         </div>
                                     </div>
                                 </div>      
                             </form>
                         </div>
                     </div>
+
                     <div class="opt" id="no2">
                         <div class="productos"></div>
                         <div class="productos">
@@ -94,6 +98,7 @@
                         </div>
                         <div class="productos"></div>
                     </div>
+
                     <div class="opt" id="no3">
                         <div class="productos"></div>
                         <div class="productos">
@@ -123,6 +128,7 @@
                         </div>
                         <div class="productos"></div>
                     </div>
+
                     <div class="opt" id="no4">
                         <div class="productos"></div>
                         <div class="productos">
@@ -152,6 +158,7 @@
                         </div>
                         <div class="productos"></div>
                     </div>
+
                     <div class="opt" id="no5">
                         <div class="productos"></div>
                         <div class="productos">
@@ -186,4 +193,23 @@
         </center>
     </body>
     <script src="static/js/catalogo.js"></script>
+    <script>
+        function previsualizarImagen() {
+            let input = document.getElementById('archivo');
+            let imagenPrevia = document.getElementById('imagenPrevia');
+            let file = input.files[0]; // Obtén el primer archivo seleccionado
+
+            if (file) {
+                let reader = new FileReader();
+                console.log("hols");
+                reader.onload = function(e) {
+                imagenPrevia.src = e.target.result; // Establece la fuente de la imagen previa como los datos del archivo
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                imagenPrevia.src = ""; // Borra la imagen previa si no se selecciona un archivo
+            }
+        }
+    </script>
 </html>

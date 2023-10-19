@@ -21,8 +21,5 @@ router.get('/admin', function(req, res){
     res.render("pages/admin")
 });
 
-router.get('/pasteles', function(req, res){
-    res.render("pages/pasteles")
-});
     
 module.exports = router
