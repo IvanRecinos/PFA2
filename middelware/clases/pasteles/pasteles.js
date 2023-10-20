@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-class pastel {
+class Pastel {
   constructor(categoria, nombre, descripcion, ingredientes, cantidad, imagen) {
     this.categoria = categoria;
     this.nombre = nombre;
@@ -41,4 +41,4 @@ class pastel {
   }
 }
 
-module.exports = Persona;
+module.exports = Pastel;

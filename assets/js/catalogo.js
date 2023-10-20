@@ -13,6 +13,9 @@ function catalogo1(){
 
     let catalogo5 = document.getElementById('no5').style.display = 'none';
     let menu5 = document.getElementById('opt5').style.backgroundColor = 'white';
+
+    let msg = document.getElementById("msg").innerHTML = ''
+    let transparente = document.getElementById("msg").style.backgroundColor = 'transparent'
 }
 
 function catalogo2(){

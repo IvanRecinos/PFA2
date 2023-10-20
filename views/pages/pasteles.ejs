@@ -22,7 +22,7 @@
                 <div class="pestañas">
                     <div class="opt" id="no1">
                         <div class="sect">
-                            <form action="">
+                            <form action="/guardar_pastel" method="POST" enctype="multipart/form-data">
                                 <div class="cont_form">
                                     <div class="producto">
                                         <div>
@@ -32,22 +32,28 @@
                                         <div>
                                             <label for="categoria">Categoría:</label>
                                             <select name="categoria" id="categoria">
-                                                <%  resultados.forEach(function(resultados) { %> 
-                                                    <option value="<%= resultados.id_categoria %>"><%= resultados.categoria %></option>
+                                                <%  resultados_categoria.forEach(function(resultados_categoria) { %> 
+                                                    <option value="<%= resultados_categoria.id_categoria %>"><%= resultados_categoria.categoria %></option>
                                                 <% }) %>     
                                             </select>
                                         </div>
                                         <div >
                                             <label for="descripcion">Descripción:</label>
-                                            <textarea name="" id="" cols="30" rows="4" id="descripcion" name="descripcion"></textarea>
+                                            <textarea cols="30" rows="4" id="descripcion" name="descripcion"></textarea>
                                         </div>
                                         <div >
                                             <label for="ingredientes">Ingredientes:</label>
-                                            <textarea name="" id="" cols="30" rows="4" id="ingredientes" name="ingredientes"></textarea>
+                                            <textarea cols="30" rows="4" id="ingredientes" name="ingredientes"></textarea>
                                         </div>
-                                        <div>
-                                            <label for="cantidad">Catidad:</label>
-                                            <input type="number" id="cantidad" name="cantidad">
+                                        <div style="display: flex;">
+                                            <div>
+                                                <label for="cantidad">Catidad:</label>
+                                                <input type="number" id="cantidad" name="cantidad">
+                                            </div>
+                                            <div>
+                                                <label for="fecha">Fecha de ingreso:</label>
+                                                <input type="date" id="fecha" name="fecha">
+                                            </div>
                                         </div>
                                         <button type="input">Guardar</button>
                                     </div>
@@ -64,129 +70,151 @@
                                             </div>  
                                         </div>
                                     </div>
-                                </div>      
+                                    
+                                </div>  
+                                <% if (mensaje) { %>
+                                    <div id="msg" style="width: 300px; padding: 5px; margin: 5px; border-radius: 20px; background-color: rgb(165, 250, 189);">
+                                        <%= mensaje %>
+                                    </div>
+                                <% } %>    
                             </form>
                         </div>
                     </div>
 
                     <div class="opt" id="no2">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 1) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="editar">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="inventario">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="ofertas">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>        
                     </div>
 
                     <div class="opt" id="no3">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 2) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="editar">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="inventario">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="ofertas">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>  
                     </div>
 
                     <div class="opt" id="no4">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 3) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="editar">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="inventario">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="ofertas">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>  
                     </div>
 
                     <div class="opt" id="no5">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 4) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="editar">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="inventario">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="ofertas">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>  
                     </div>
                 </div>
             </section>
@@ -201,7 +229,7 @@
 
             if (file) {
                 let reader = new FileReader();
-                console.log("hols");
+                
                 reader.onload = function(e) {
                 imagenPrevia.src = e.target.result; // Establece la fuente de la imagen previa como los datos del archivo
                 };
@@ -211,5 +239,6 @@
                 imagenPrevia.src = ""; // Borra la imagen previa si no se selecciona un archivo
             }
         }
+
     </script>
 </html>

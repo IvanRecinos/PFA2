@@ -36,7 +36,7 @@ label{
     height: 300px;
     background-color: rgba(160, 72, 255, 0.73);
     border-radius: 25px;
-    margin-top: 175px;
+    margin-top: -175px;
 }
 
 .imagen input{
