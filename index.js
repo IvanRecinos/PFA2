@@ -25,7 +25,13 @@ const direcciones = require('./routes/direcciones');
 aplicacion.use('/', direcciones);
 
 const pasteles = require('./middelware/pasteles');
-aplicacion.use(pasteles)
+aplicacion.use(pasteles);
+
+const catalogo = require('./middelware/catalogo');
+aplicacion.use(catalogo);
+
+const producto = require('./middelware/producto');
+aplicacion.use(producto);
 
 
 

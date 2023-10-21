@@ -75,7 +75,7 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
 
     db.connect(function(err){
         const query_nuevo_pastel = `INSERT INTO pasteles (id_categoria, nombre_pastel, descripcion, ingredientes, cantidad, imagen, fecha)
-          VALUES (?, ?, ?, ?, ?, ?)`;
+          VALUES (?, ?, ?, ?, ?, ?, ?)`;
     
         const values = [
             nuevo_pastel.categoria,
@@ -89,8 +89,8 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
 
         db.query(query_nuevo_pastel, values, function(error, filas, campos){
             if (error) {
-                console.error('Error al insertar la factura en la base de datos:', error);
-                return res.status(500).send('Error al guardar la factura.');
+                console.error('Error al insertar el producto en la base de datos:', error);
+                return res.status(500).send('Error al guardar el producto.');
             } else {
                 res.redirect('/pasteles?mensaje=Registro guardado exitosamente');
             }    

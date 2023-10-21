@@ -20,149 +20,147 @@
                 </div>
                 <div class="pestañas">
                     <div class="opt" id="no1">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 1) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px"
+                                             height="125px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="ver">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="compra">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="agregar_carrito">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>        
                     </div>
+
                     <div class="opt" id="no2">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 2) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px"
+                                             height="125px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="ver">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="compra">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="agregar_carrito">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>  
                     </div>
+
                     <div class="opt" id="no3">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 3) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px"
+                                             height="125px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="ver">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="compra">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="agregar_carrito">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>  
                     </div>
+
                     <div class="opt" id="no4">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
+                            <% if (resultados_pasteles.id_categoria == 4) { %>
+                                <div class="productos">
+                                    <div class="titulo">
+                                        <h3><%= resultados_pasteles.nombre_pastel %></h3>
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    <div class="imagen">
+                                        <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                             alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                             width="200px"
+                                             height="125px">
                                     </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="footer_producto">
+                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                            <div class="boton" id="ver">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="compra">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div class="boton" id="agregar_carrito">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                                </div>
+                            <% } %>   
+                        <% }) %>  
                     </div>
+
                     <div class="opt" id="no5">
-                        <div class="productos"></div>
-                        <div class="productos">
-                            <div class="titulo">
-                                <h3>titulo</h3>
-                            </div>
-                            <div class="imagen">
-                                <h1>img</h1>
-                            </div>
-                            <div class="footer_producto">
-                                <a href="/producto">
-                                    <div class="boton" id="ver">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="compra">
-                                        <i class="fa-solid fa-bag-shopping"></i>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boton" id="agregar_carrito">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="productos"></div>
+                        
                     </div>
                 </div>
             </section>

@@ -49,12 +49,16 @@ section{
     display: flex;
     gap: 25px;
     justify-content: center;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en filas */
+    flex-wrap: wrap; 
 }
 
 .opt > div {
-    flex-basis: calc(33.33% - 80px); /* 33.33% para tres elementos por fila, -10px para el espacio entre los elementos */
-    margin: 5px; /* Espacio entre los elementos */
+    flex-basis: calc(33.33% - 80px); 
+    margin: 5px; 
+}
+
+.titulo{
+    height: 50px;
 }
 
 .productos{
@@ -106,7 +110,7 @@ section{
 
 .footer_producto{
     display: flex;
-    margin-top: -50px;
+    margin-top: -60px;
     gap: 10px;
     justify-content: center;
 }
