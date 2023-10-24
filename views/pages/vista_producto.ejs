@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="/static/css/vista_producto.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+        <section>
+            <h1 style="text-align: center;"><%= resultados_pasteles.nombre_pastel %></h1>
+        <div class="sect">
+            <form action="/realizar_pedido" method="POST" >
+                <div class="cont_form">
+                    <div class="producto">
+                        <input type="hidden" value="<%= resultados_pasteles.id_pastel %>">
+                        <div>
+                            
+                        </div>
+                        <div >
+                            <label for="descripcion">Descripción: </label>
+                            <textarea cols="30" rows="4" id="descripcion" name="descripcion"><%= resultados_pasteles.descripcion %></textarea>
+                        </div>
+                        <div >
+                            <label for="ingredientes">Ingredientes:</label>
+                            <textarea cols="30" rows="4" id="ingredientes" name="ingredientes"><%= resultados_pasteles.ingredientes %></textarea>
+                        </div>
+                        <div style="display: flex;">
+                            <button type="input">Realizar pedido</button>
+                            <a class="cancelar" href="/catalogo">Cancelar</a>
+                        </div>
+                    </div>
+                    <div class="form_contenido">
+                        <div>                            
+                            <div class="imagen">
+                                <div class="img">
+                                    <center>
+                                        <img class="img_cont" id="imagenPrevia" src="/static/images/img_pasteles/<%= resultados_pasteles.imagen %>" alt="Previsualización de la imagen">
+                                    </center>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    </body>
+</html>

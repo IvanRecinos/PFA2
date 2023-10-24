@@ -1,10 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const connectDB = require('./db');
 const multer = require('multer');  
 const { v4: uuidv4 } = require('uuid'); 
 
-router.use(connectDB);
+const mysql = require("mysql")
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: '',
+    database: 'pasteles_pfa2'
+});
+
 
 // Configura el middleware Multer
 const storage = multer.diskStorage({
@@ -21,15 +29,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/pasteles', async function(req, res) {
-    const db = req.db;
     
     try {
         const query_busqueda_categoria = 'SELECT * FROM categoria';
         const query_resultado_pasteles = 'SELECT * FROM pasteles';
 
         const [resultado_categoria, resultado_pasteles] = await Promise.all([
-            queryAsync(db, query_busqueda_categoria),
-            queryAsync(db, query_resultado_pasteles)
+            queryAsync(connection, query_busqueda_categoria),
+            queryAsync(connection, query_resultado_pasteles)
         ]);
 
         const mensaje = req.query.mensaje || '';
@@ -45,7 +52,7 @@ router.get('/pasteles', async function(req, res) {
 });
 function queryAsync(db, query) {
     return new Promise((resolve, reject) => {
-        db.query(query, (error, result) => {
+        connection.query(query, (error, result) => {
             if (error) {
                 reject(error);
             } else {
@@ -57,7 +64,6 @@ function queryAsync(db, query) {
 
 
 router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {        
-    const db = req.db;
 
     const identicador = uuid;
     const ext = extension;
@@ -73,7 +79,7 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
         fecha: req.body.fecha
     }
 
-    db.connect(function(err){
+    connection.connect(function(err){
         const query_nuevo_pastel = `INSERT INTO pasteles (id_categoria, nombre_pastel, descripcion, ingredientes, cantidad, imagen, fecha)
           VALUES (?, ?, ?, ?, ?, ?, ?)`;
     
@@ -87,7 +93,7 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
             nuevo_pastel.fecha
         ];
 
-        db.query(query_nuevo_pastel, values, function(error, filas, campos){
+        connection.query(query_nuevo_pastel, values, function(error, filas, campos){
             if (error) {
                 console.error('Error al insertar el producto en la base de datos:', error);
                 return res.status(500).send('Error al guardar el producto.');
@@ -96,7 +102,7 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
             }    
         });
     })
-    db.release();
+    connection.close;
 });
 
 module.exports = router

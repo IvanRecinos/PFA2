@@ -24,14 +24,17 @@ aplicacion.use(session({
 const direcciones = require('./routes/direcciones');
 aplicacion.use('/', direcciones);
 
+const index = require('./middelware/index');
+aplicacion.use(index);
+
 const pasteles = require('./middelware/pasteles');
 aplicacion.use(pasteles);
 
 const catalogo = require('./middelware/catalogo');
 aplicacion.use(catalogo);
 
-const producto = require('./middelware/producto');
-aplicacion.use(producto);
+const productos = require('./middelware/producto');
+aplicacion.use(productos);
 
 
 

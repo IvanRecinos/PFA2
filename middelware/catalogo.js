@@ -1,26 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const connectDB = require('./db');
+const mysql = require("mysql") 
+var connection = mysql.createConnection({
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: '',
+    database: 'pasteles_pfa2'
+});
 
-router.use(connectDB);
+router.get('/catalogo', (req, res) => {
 
-router.get('/catalogo', async function(req, res) {
-    const db = req.db;
-    
     try {
-        db.connect(function(err){
+        connection.connect(function(err){
             const query_catalogo = `SELECT * from pasteles`;
             
-            db.query(query_catalogo, (error, resultado_pasteles) => {
+            connection.query(query_catalogo, (error, resultado_pasteles) => {
                 if (error) {
                     console.error('Error al buscar la lista de producto', error);
                     return res.status(500).send('Error al buscar el producto.');
                 } else {
                     res.render('pages/catalogo', {resultados_pasteles: resultado_pasteles});
+                    //console.log(resultado_pasteles);
                 }    
             });
         })
-        db.release();
+        connection.close;
     } catch (error) {
         console.error('Error al buscar la lista de producto', error);
         return res.status(500).send('Error al buscar el producto.');

@@ -13,26 +13,64 @@
                     type="text" 
                     name="buscador" 
                     id="buscador"
-                    placeholder="Ingresa tu pastel preferido..."
+                    placeholder="Ingresa el nombre del pastel que buscas..."
                 >
             </div>
         </section>
 
         <section>
-            <div class="catalogo">
-                <div class="opciones">
-                    <div class="opciones_pasteles"></div>
-                    <div class="opciones_pasteles"></div>
-                </div>
-                <div class="opciones">
-                    <div class="opciones_pasteles"></div>
-                    <div class="opciones_pasteles"></div>
-                </div>
-                <div class="opciones">
-                    <div class="opciones_pasteles"></div>
-                    <div class="opciones_pasteles"></div>
-                </div>
+            <center>
+                <h1>Ofertas del día</h1>
+            </center>
+            <div class="catalogo" style="display: flex;">
+               <div class="contenedor">
+                <%  resultados_pasteles.forEach(function(resultados_pasteles) { %>
+                    <div class="opciones">
+                        <div class="opciones_pasteles">
+                            <div>
+                                <img src="static/images/img_pasteles/<%= resultados_pasteles.imagen %>" 
+                                alt="<%= resultados_pasteles.nombre_pastel %>" 
+                                width="200px"
+                                height="150px">
+                            </div>
+                            <div>
+                                <h1 style="color: white;
+                                            margin-top: -95px;
+                                            margin-left: 150px;
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            font-size: 1.5em;
+                                            "
+                                        >
+                                        <%= resultados_pasteles.nombre_pastel %>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+                
             </div>
         </section>
     </body>
+    <script>
+        function load_data_nit(query = ''){
+        fetch('/busqueda_personalizada?search_query='+query+'').then(function(response){
+            return response.json();
+            }).then(function(data){
+                console.log(data.nombre_pastel);
+            })
+        }
+
+        var search_element_nit = document.getElementById('buscador');
+
+        search_element_nit.onkeyup = function(){
+            var query = search_element_nit.value;
+            
+            load_data_nit(query);
+            
+        }  
+    </script>
 </html>

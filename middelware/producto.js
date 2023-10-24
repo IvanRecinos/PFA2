@@ -1,31 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const connectDB = require('./db');
+const mysql = require("mysql")
 
-router.use(connectDB);
+var connection = mysql.createConnection({
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: '',
+    database: 'pasteles_pfa2'
+});
 
 router.get('/producto/:id', function(req, res) {
-    const db = req.db;
     let id = req.params.id;
     
-    try {
-        db.connect(function(err){
-            const query_catalogo = `SELECT * FROM pasteles WHERE id_pastel = ?`;
-            
-            db.query(query_catalogo, [id], (error, resultado_pasteles) => {
-                if (error) {
-                    console.error('Error al buscar la lista de producto', error);
-                    return res.status(500).send('Error al buscar el producto.');
-                } else {
-                    res.render('pages/catalogo', {resultados_pasteles: resultado_pasteles});
-                }    
-            });
-        })
-        db.release();
-    } catch (error) {
-        console.error('Error al buscar la lista de producto', error);
-        return res.status(500).send('Error al buscar el producto.');
-    }
+    connection.connect(function(err){
+        const query_catalogo = `SELECT * FROM pasteles WHERE id_pastel = ?`;
+        connection.query(query_catalogo, [id], (error, resultado_pasteles) => {
+            if (error) {
+                console.error('Error al buscar la lista de producto', error);
+                return res.status(500).send('Error al buscar el producto.');
+            } else {    
+                res.render('pages/vista_producto', {resultados_pasteles: resultado_pasteles[0]});
+            }    
+        });
+    })
+    connection.close;
 });
 
 module.exports = router

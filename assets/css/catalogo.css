@@ -43,6 +43,10 @@ section{
     cursor: pointer;
 }
 
+img{
+    object-fit: cover;
+}
+
 .opt {
     width: 100%;
     height: 550px;
@@ -67,10 +71,12 @@ section{
     background-color: white;
     margin: 25px;
     border-radius: 15px;
+    transition: transform 0.3s ease;
 }
 
 .productos:hover{
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 #no1 .productos{
