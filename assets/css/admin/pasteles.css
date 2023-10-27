@@ -57,7 +57,17 @@ button{
     color: white;
 }
 
-button:hover{
-    background-color: rgb(163, 89, 232);
+#editar:hover{
+    background-color: rgb(89, 232, 172);
+    cursor: pointer;
+}
+
+#inventario:hover{
+    background-color: rgb(132, 89, 232);
+    cursor: pointer;
+}
+
+#eliminar:hover{
+    background-color: rgb(232, 89, 89);
     cursor: pointer;
 }

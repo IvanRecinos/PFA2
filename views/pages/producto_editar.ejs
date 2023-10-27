@@ -9,12 +9,17 @@
         <section>
             <h1 style="text-align: center;"><%= resultados_pasteles.nombre_pastel %></h1>
         <div class="sect">
-            <form action="/realizar_pedido" method="POST" >
+            <form action="/editar_producto" method="POST" >
                 <div class="cont_form">
                     <div class="producto">
-                        <input type="hidden" value="<%= resultados_pasteles.id_pastel %>">
+                        <input type="hidden" value="<%= resultados_pasteles.id_pastel %>" name="id">
+                        <input type="hidden" value="<%= resultados_pasteles.id_categoria %>" name="categoria">
+                        <input type="hidden" value="<%= resultados_pasteles.cantidad %>" name="cantidad">
+                        <input type="hidden" value="<%= resultados_pasteles.imagen %>" name="imagen">
+                        <input type="hidden" value="<%= resultados_pasteles.fecha %>" name="fecha">
                         <div>
-                            
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" value="<%= resultados_pasteles.nombre_pastel %>">
                         </div>
                         <div >
                             <label for="descripcion">Descripción: </label>
@@ -24,12 +29,12 @@
                             <label for="ingredientes">Ingredientes:</label>
                             <textarea cols="30" rows="4" id="ingredientes" name="ingredientes"><%= resultados_pasteles.ingredientes %></textarea>
                         </div><div >
-                            <label for="Precio">Precio:</label>
-                            <label for="Costo"><%= resultados_pasteles.precio %></label>
+                            <label for="precio">Precio:</label>
+                            <input type="text" id="precio" name="precio" value="<%= resultados_pasteles.precio %>">
                         </div>
                         <div style="display: flex;">
-                            <button type="input">Realizar pedido</button>
-                            <a class="cancelar" href="/catalogo">Cancelar</a>
+                            <button type="input">Editar</button>
+                            <a class="cancelar" href="/pasteles">Cancelar</a>
                         </div>
                     </div>
                     <div class="form_contenido">

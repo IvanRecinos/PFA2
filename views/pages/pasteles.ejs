@@ -51,6 +51,10 @@
                                                 <input type="number" id="cantidad" name="cantidad">
                                             </div>
                                             <div>
+                                                <label for="precio">Precio:</label>
+                                                <input type="text" id="precio" name="precio">
+                                            </div>
+                                            <div>
                                                 <label for="fecha">Fecha de ingreso:</label>
                                                 <input type="date" id="fecha" name="fecha">
                                             </div>
@@ -93,21 +97,25 @@
                                              alt="<%= resultados_pasteles.nombre_pastel %>" 
                                              width="200px"
                                              height="125px">
+                                        
+                                    </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
                                     </div>
                                     <div class="footer_producto">
-                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                        <a href="/producto_editar/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="editar">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </div>
                                         </a>
-                                        <a href="">
+                                        <a href="/inventario/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="inventario">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </a>
                                         <a href="">
-                                            <div class="boton" id="ofertas">
-                                                <i class="fa-solid fa-calendar-days"></i>
+                                            <div class="boton" id="eliminar">
+                                                <i class="fa-solid fa-trash"></i>
                                             </div>
                                         </a>
                                     </div>
@@ -129,20 +137,23 @@
                                              width="200px"
                                              height="125px">
                                     </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
+                                    </div>
                                     <div class="footer_producto">
-                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                        <a href="/producto_editar/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="editar">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </div>
                                         </a>
-                                        <a href="">
+                                        <a href="/inventario/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="inventario">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </a>
                                         <a href="">
                                             <div class="boton" id="ofertas">
-                                                <i class="fa-solid fa-calendar-days"></i>
+                                                <i class="fa-solid fa-trash"></i>
                                             </div>
                                         </a>
                                     </div>
@@ -164,20 +175,23 @@
                                              width="200px"
                                              height="125px">
                                     </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
+                                    </div>
                                     <div class="footer_producto">
-                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                        <a href="/producto_editar/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="editar">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </div>
                                         </a>
-                                        <a href="">
+                                        <a href="/inventario/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="inventario">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </a>
                                         <a href="">
                                             <div class="boton" id="ofertas">
-                                                <i class="fa-solid fa-calendar-days"></i>
+                                                <i class="fa-solid fa-trash"></i>
                                             </div>
                                         </a>
                                     </div>
@@ -199,20 +213,23 @@
                                              width="200px"
                                              height="125px">
                                     </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
+                                    </div>
                                     <div class="footer_producto">
-                                        <a href="/producto/<%= resultados_pasteles.id_pastel %>">
+                                        <a href="/producto_editar/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="editar">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </div>
                                         </a>
-                                        <a href="">
+                                        <a href="/inventario/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="inventario">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </a>
                                         <a href="">
                                             <div class="boton" id="ofertas">
-                                                <i class="fa-solid fa-calendar-days"></i>
+                                                <i class="fa-solid fa-trash"></i>
                                             </div>
                                         </a>
                                     </div>
@@ -223,6 +240,8 @@
                 </div>
             </section>
         </center>
+
+        <%- include('../partials/footer.ejs'); %>
     </body>
     <script src="static/js/catalogo.js"></script>
     <script>

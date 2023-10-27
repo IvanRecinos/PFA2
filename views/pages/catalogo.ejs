@@ -32,6 +32,9 @@
                                              width="200px"
                                              height="125px">
                                     </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
+                                    </div>
                                     <div class="footer_producto">
                                         <a href="/producto/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="ver">
@@ -66,6 +69,9 @@
                                              alt="<%= resultados_pasteles.nombre_pastel %>" 
                                              width="200px"
                                              height="125px">
+                                    </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
                                     </div>
                                     <div class="footer_producto">
                                         <a href="/producto/<%= resultados_pasteles.id_pastel %>">
@@ -102,6 +108,9 @@
                                              width="200px"
                                              height="125px">
                                     </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
+                                    </div>
                                     <div class="footer_producto">
                                         <a href="/producto/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="ver">
@@ -137,6 +146,9 @@
                                              width="200px"
                                              height="125px">
                                     </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
+                                    </div>
                                     <div class="footer_producto">
                                         <a href="/producto/<%= resultados_pasteles.id_pastel %>">
                                             <div class="boton" id="ver">
@@ -165,7 +177,7 @@
                                 
                                 let fecha_varificar = resultados_pasteles.fecha
                                 let fechaPosterior = new Date(fecha_varificar)
-                                fechaPosterior.setDate(fechaPosterior.getDate() + 5)
+                                fechaPosterior.setDate(fechaPosterior.getDate() + 26)
                                 
                                 let fechaHoy = new Date(); 
                                 if (fechaPosterior > fechaHoy) {
@@ -180,6 +192,9 @@
                                              alt="<%= resultados_pasteles.nombre_pastel %>" 
                                              width="200px"
                                              height="125px">
+                                    </div>
+                                    <div class="precio">
+                                        <h3>Q<%= resultados_pasteles.precio %></h3>
                                     </div>
                                     <div class="footer_producto">
                                         <a href="/producto/<%= resultados_pasteles.id_pastel %>">
@@ -206,5 +221,7 @@
             </section>
         </center>
     </body>
+
+    <%- include('../partials/footer.ejs'); %>
     <script src="static/js/catalogo.js"></script>
 </html>

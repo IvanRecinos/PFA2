@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="/static/css/vista_producto.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+        <section>
+            <h1 style="text-align: center;"><%= resultados_pasteles.nombre_pastel %></h1>
+        <div class="sect">
+            <form action="/modificiar_inventario" method="POST" >
+                <div class="cont_form">
+                    <div class="producto">
+                        <input type="hidden" value="<%= resultados_pasteles.id_pastel %>" name="id">
+                        <input type="hidden" value="<%= resultados_pasteles.id_categoria %>" name="categoria">
+                        <input type="hidden" value="<%= resultados_pasteles.nombre_pastel %>" name="nombre">
+                        <input type="hidden" value="<%= resultados_pasteles.descripcion %>" name="descripcion">
+                        <input type="hidden" value="<%= resultados_pasteles.ingredientes %>" name="ingredientes">
+                        
+                        <div>
+                            <label for="nombre">Cantidad:</label>
+                            <label for="nombre">Actualmente hay: <%= resultados_pasteles.cantidad %> unidades</label>
+                            <input type="hidden" value="<%= resultados_pasteles.cantidad %>" name="cantidad">
+                        </div>
+                        <div>
+                            <label for="nueva_cantidad">Nuevo ingreso:</label>
+                            <input type="text" id="nombre" name="nueva_cantidad">
+                        </div>
+
+                        <input type="hidden" value="<%= resultados_pasteles.imagen %>" name="imagen">
+                        <input type="hidden" value="<%= resultados_pasteles.fecha %>" name="fecha">
+                        <input type="hidden" value="<%= resultados_pasteles.precio %>" name="precio">
+                        
+                        <div style="display: flex;">
+                            <button type="input">Guardar</button>
+                            <a class="cancelar" href="/pasteles">Cancelar</a>
+                        </div>
+                    </div>
+                    <div class="form_contenido">
+                        <div>                            
+                            <div class="imagen">
+                                <div class="img">
+                                    <center>
+                                        <img class="img_cont" id="imagenPrevia" src="/static/images/img_pasteles/<%= resultados_pasteles.imagen %>" alt="Previsualización de la imagen">
+                                    </center>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <%- include('../partials/footer.ejs'); %>
+    </body>
+</html>

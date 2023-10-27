@@ -13,7 +13,6 @@ var connection = mysql.createConnection({
     database: 'pasteles_pfa2'
 });
 
-
 // Configura el middleware Multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -40,6 +39,7 @@ router.get('/pasteles', async function(req, res) {
         ]);
 
         const mensaje = req.query.mensaje || '';
+        
         res.render('pages/pasteles', { 
             resultados_categoria: resultado_categoria,
             resultados_pasteles: resultado_pasteles,
@@ -50,6 +50,7 @@ router.get('/pasteles', async function(req, res) {
         return res.status(500).send('Error al obtener datos de la base de datos.');
     }
 });
+
 function queryAsync(db, query) {
     return new Promise((resolve, reject) => {
         connection.query(query, (error, result) => {
@@ -76,12 +77,13 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
         ingredientes: req.body.ingredientes,
         cantidad: req.body.cantidad,
         imagen: identicador + '.' + ext,
-        fecha: req.body.fecha
+        fecha: req.body.fecha,
+        precio: req.body.precio
     }
 
     connection.connect(function(err){
-        const query_nuevo_pastel = `INSERT INTO pasteles (id_categoria, nombre_pastel, descripcion, ingredientes, cantidad, imagen, fecha)
-          VALUES (?, ?, ?, ?, ?, ?, ?)`;
+        const query_nuevo_pastel = `INSERT INTO pasteles (id_categoria, nombre_pastel, descripcion, ingredientes, cantidad, imagen, fecha, precio)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
     
         const values = [
             nuevo_pastel.categoria,
@@ -90,7 +92,8 @@ router.post('/guardar_pastel', upload.single('archivo'), (req, res) => {
             nuevo_pastel.ingredientes,
             nuevo_pastel.cantidad,
             nuevo_pastel.imagen,
-            nuevo_pastel.fecha
+            nuevo_pastel.fecha,
+            nuevo_pastel.precio
         ];
 
         connection.query(query_nuevo_pastel, values, function(error, filas, campos){
