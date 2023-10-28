@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="static/css/compra.css">
+        <link rel="stylesheet" href="/static/css/vista_producto.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+
+        <section>
+            <center>
+                <h1>Datos cliente</h1>
+            </center>
+            <div class="sect">
+                <form action="/clientes" method="post">
+                    <div class="form_contenido">
+                        <div class="descripcion">
+                            <input type="hidden" value="<%= resultados_pasteles.id_pastel %>" name="id_pastel">
+                            <div class="datos_cliente">
+                                <div>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" name="nombre">
+                                </div>
+                                <div>
+                                    <label for="apellido">Apellido:</label>
+                                    <input type="text" id="apellido" name="apellido">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="nombre">Dirección:</label>
+                                <input type="text" id="direccion" name="direccion">
+                            </div>
+                            <div>
+                                <label for="nombre">Correo Electrónico:</label>
+                                <input type="text" id="mail" name="mail">
+                            </div>
+                            <div>
+                                <label for="nombre">Teléfono:</label>
+                                <input type="text" id="telefono" name="telefono">
+                            </div>
+                            <div>
+                                <label for="total">Total: <h3 style="text-align: center;">Q<%= resultados_pasteles.precio %></h3></label>
+                                <input type="hidden" id="total" name="total" value="<%= resultados_pasteles.precio %>">
+                            </div>
+                            <div>
+                                <label for="nombre">Tipo de pago:</label>
+                                <select name="tipo" id="tipo" onClick="tipoPago()">
+                                    <option value="1">Contra entrega</option>
+                                    <option value="2">Crédito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="margin: 15px;">
+                                <label for="producto">Producto: <h1 style="font-size: 1.5em; margin-top: 5px;"><%= resultados_pasteles.nombre_pastel %></h1></label>
+                            </div>                        
+                            <div class="imagen">
+                                <center>
+                                    <img class="img_cont" id="imagenPrevia" src="/static/images/img_pasteles/<%= resultados_pasteles.imagen %>">
+                                </center>   
+                            </div>
+                        </div>
+                    </div>
+                    <center>
+                        <style>
+                            .credito{
+                                width: 350px;
+                                margin: 25px;
+                                padding: 25px;
+                                border-radius: 15px;
+                                background-color: blueviolet;
+                                display: none;
+                            }
+
+                            .credito div{
+                                padding: 5px;
+                            }
+
+                            p{
+                                margin-top: -15px;
+                            }
+
+                            .btn{
+                                padding: 10px;
+                                border-radius: 5px;
+                                background-color: rgb(194, 146, 239); 
+                                color: white;
+                                border-color: rgb(194, 146, 239);
+                                cursor: pointer;
+                            }
+
+                            .btn:hover{                                
+                                background-color: rgb(184, 126, 238); 
+                                border-color: rgb(194, 146, 239);
+                            }
+                        </style>
+                        <div class="credito" id="credito">
+                            <p>Ingrese tarjeta de crédito</p>
+                            <div>
+                                <input style="width: 50px;" type="text" name="no1"> - <input style="width: 50px;" type="text" name="no2"> - <input style="width: 50px;" type="text" name="3"> - <input style="width: 50px;" type="text" name="no4">
+                            </div>
+                            <div>
+                                <input style="width: 129px;" type="text" name="fecha">  <input style="width: 129px;" type="text" name="codigo"> 
+                            </div>
+                        </div>
+                    </center>
+                    <center>
+                        <button class="btn" type="input">Realizar Pedido</button>
+                    </center>
+                </form>
+            </div>
+        </section>
+
+        <%- include('../partials/footer.ejs'); %>
+
+        <script>
+           function tipoPago() {
+                let selectedValue = document.getElementById('tipo').value;
+                let credito = document.getElementById('credito');
+                
+                if (selectedValue === "1") {
+                    credito.style.display = 'none';
+                } else if (selectedValue === "2") {
+                    credito.style.display = 'block';
+                }
+            }
+
+        </script>
+    </body>
+</html>

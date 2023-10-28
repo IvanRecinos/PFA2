@@ -8,6 +8,7 @@ h1{
     font-family: 'Dancing Script', cursive;
 }
 
+
 section .sect{
     margin: 0 auto;
     width: 750px;
@@ -69,3 +70,4 @@ button:hover{
     border-color: #842bff;
     cursor: pointer;
 }
+

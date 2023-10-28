@@ -27,8 +27,8 @@
                             <label for="Precio">Precio:</label>
                             <label for="Costo"><%= resultados_pasteles.precio %></label>
                         </div>
-                        <div style="display: flex;">
-                            <button type="input">Realizar pedido</button>
+                        <div style="display: flex;">                            
+                            <a class="button" href="/datos_clientes/<%= resultados_pasteles.id_pastel %>">Realizar pedido</a>
                             <a class="cancelar" href="/catalogo">Cancelar</a>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <div class="imagen">
                                 <div class="img">
                                     <center>
-                                        <img class="img_cont" id="imagenPrevia" src="/static/images/img_pasteles/<%= resultados_pasteles.imagen %>" alt="Previsualización de la imagen">
+                                        <img class="img_cont" id="imagenPrevia" src="/static/images/img_pasteles/<%= resultados_pasteles.imagen %>">
                                     </center>
                                 </div>
                             </div>  

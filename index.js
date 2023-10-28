@@ -2,24 +2,18 @@ const express = require('express');
 const aplicacion = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const MemoryStore = require('memorystore')(session);
-const crypto = require('crypto');
 
 aplicacion.set('view engine', 'ejs');
 aplicacion.use('/static', express.static('assets'));
 aplicacion.use(bodyParser.json());
 aplicacion.use(bodyParser.urlencoded({ extended: true }));
-/*
+
 aplicacion.use(session({
-    secret: crypto.randomBytes(20).toString('hex'), 
-    resave: false, 
-    saveUninitialized: false,
-    store: new MemoryStore({
-      checkPeriod: 86400000
-    }),
-    cookie: { maxAge: (86400000) }
+  secret: 'tu_secreto', // Cambia esto por una cadena segura y única.
+  resave: false,
+  saveUninitialized: true,
 }));
-*/
+
 
 const direcciones = require('./routes/direcciones');
 aplicacion.use('/', direcciones);
@@ -41,6 +35,9 @@ aplicacion.use(editar);
 
 const inventario = require('./middelware/inventario');
 aplicacion.use(inventario);
+
+const datos_clientes = require('./middelware/datos_clientes');
+aplicacion.use(datos_clientes);
 
 
 aplicacion.listen(8888, () => {console.log("Servidor iniciado en el puerto 8888")});

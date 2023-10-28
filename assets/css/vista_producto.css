@@ -61,7 +61,7 @@ input, textarea, select{
     border-radius: 25px;
 }
 
-button{
+.button{
     width: 150px;
     margin: 15px;
     background-color: #7927EF;
@@ -69,9 +69,10 @@ button{
     padding: 10px;
     border-radius: 15px;
     border-color: #7927EF;
+    text-align: center;
 }
 
-button:hover{
+.button:hover{
     background-color: #832afe;
     border-color: #842bff;
     cursor: pointer;
