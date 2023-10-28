@@ -24,7 +24,7 @@
             </center>
             <div class="catalogo" style="display: flex;">
                <div class="contenedor">
-                    <div class="opciones">
+                    <div class="opciones" id="ofertas">
                         <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
                             <div class="opciones_pasteles">
                                 <div>
@@ -42,31 +42,102 @@
                             </div>  
                         <% }) %>
                     </div>
+                    
+                    <div class="busqueda" id="busq">
+                            <center>
+                                
+                            </center>
+                    </div>
+                    
                 </div>
-            </div>
-
-                
             </div>
         </section>
 
         <%- include('../partials/footer.ejs'); %>
     </body>
     <script>
-        function load_data_nit(query = ''){
-        fetch('/busqueda_personalizada?search_query='+query+'').then(function(response){
-            return response.json();
-            }).then(function(data){
-                console.log(data);
-            })
+
+        let search_element = document.getElementById('buscador');
+
+        search_element.onkeyup = function(){
+            let query = search_element.value;
+            if(query === ''){
+                document.getElementById('ofertas').style.display = 'flex';
+                document.querySelector('h1').style.display = 'block';
+                document.getElementById('busq').style.display = 'none';
+            }else{
+                document.getElementById('ofertas').style.display = 'none';
+                document.querySelector('h1').style.display = 'none';
+                document.getElementById('busq').style.display = 'flex';
+                load_data_nit(query);
+            }
+        }  
+
+        function load_data_nit(query = '') {
+            fetch('/busqueda_personalizada?search_query=' + query).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                const busqElement = document.getElementById('busq');
+                busqElement.innerHTML = ''; // Limpia el contenido existente
+
+                busqElement.style.display = 'flex'; // Establece flex display
+                busqElement.style.flexWrap = 'wrap';
+                busqElement.style.gap = "50px";
+                busqElement.style.justifyContent = 'center';
+                
+
+                data.forEach(function (resultado) {
+                    // Crea un nuevo div con la clase 'opciones_pasteles'
+                    const opcionesPastelesDiv = document.createElement('div');
+                    opcionesPastelesDiv.classList.add('opciones_pasteles');
+                    opcionesPastelesDiv.style.width = 'calc(33.33% - 10px)';
+
+                    if (data.length === 1) {
+                        opcionesPastelesDiv.style.width = '100%'; // Cambia el ancho para un solo resultado
+                        // También puedes aplicar otros estilos específicos para un solo resultado si lo deseas
+                    }
+
+                    // Crea la parte de la imagen
+                    const imgDiv = document.createElement('div');
+                    const img = document.createElement('img');
+                    img.src = `static/images/img_pasteles/${resultado.imagen}`;
+                    img.alt = resultado.nombre_pastel;
+                    img.width = '200';
+                    img.height = '150';
+                    imgDiv.appendChild(img);
+
+                    // Crea la parte de texto
+                    const textoDiv = document.createElement('div');
+                    const h1 = document.createElement('h1');
+                    h1.style.color = 'white';
+                    h1.style.fontSize = '1.8em';
+                    h1.style.padding = '20px';
+                    h1.textContent = resultado.nombre_pastel;
+                    const a = document.createElement('a');
+                    a.classList.add('link');
+                    a.href = `/producto/${resultado.id_pastel}`;
+                    a.textContent = 'Realizar pedido';
+                    a.style.display = 'flex';
+                    a.style.justifyContent = 'center';
+                    a.style.width = '150px'
+                    textoDiv.appendChild(h1);
+                    textoDiv.appendChild(a);
+
+                    // Agrega las partes al div 'opciones_pasteles'
+                    opcionesPastelesDiv.appendChild(imgDiv);
+                    opcionesPastelesDiv.appendChild(textoDiv);
+
+                    // Agrega el 'opciones_pasteles' al contenedor 'busq'
+                    busqElement.appendChild(opcionesPastelesDiv);
+                });
+
+                if (data.length === 0) {
+                    // Muestra un mensaje si no se encontraron resultados
+                    busqElement.textContent = 'No se encontraron resultados.';
+                }
+            });
         }
 
-        var search_element_nit = document.getElementById('buscador');
 
-        search_element_nit.onkeyup = function(){
-            var query = search_element_nit.value;
-            
-            load_data_nit(query);
-            
-        }  
     </script>
 </html>

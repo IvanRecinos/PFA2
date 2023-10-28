@@ -33,11 +33,10 @@ router.get('/datos_clientes/:id', function(req, res) {
 });
 
 router.post('/clientes', (req, res) => {        
-
     const id_pastel = req.body.id_pastel;
     const tipo = req.body.tipo;
 
-    //Creando el nuevo objeto
+    // Creando el nuevo objeto cliente
     const cliente = {
         uuid: uuidv4(),
         nombre: req.body.nombre,
@@ -47,7 +46,17 @@ router.post('/clientes', (req, res) => {
         telefono: req.body.telefono
     }
 
-    connection.connect(function(err){
+    // Crear un objeto tarjeta si el tipo es "2"
+    const tarjeta = {
+        no1: req.body.no1,
+        no2: req.body.no2,
+        no3: req.body.no3,
+        no4: req.body.no4,
+        fecha: req.body.fecha,
+        codigo: req.body.codigo
+    }
+
+    connection.connect(function(err) {
         const query_cliente = `INSERT INTO clientes (UUID, NOMBRE, APELLIDO, DIRECCION, TELEFONO, CORREO)
           VALUES (?, ?, ?, ?, ?, ?)`;
     
@@ -60,12 +69,12 @@ router.post('/clientes', (req, res) => {
             cliente.correo
         ];
 
-        connection.query(query_cliente, values, function(error, filas, campos){
+        connection.query(query_cliente, values, function(error, filas, campos) {
             if (error) {
-                console.error('Error al insertar aliente en la base de datos:', error);
-                return res.status(500).send('Error al guardar el producto.');
+                console.error('Error al insertar cliente en la base de datos:', error);
+                return res.status(500).send('Error al guardar el cliente.');
             } else {
-                const query_venta = `INSERT INTO ventas (ID_CLIENTE, ID_PASTEL, TOTAL)
+                const query_venta = `INSERT INTO venta (id_cliente, id_producto, total)
                 VALUES (?, ?, ?)`;
 
                 const values2 = [
@@ -74,77 +83,54 @@ router.post('/clientes', (req, res) => {
                     req.body.total
                 ]; 
                 
-                connection.query(query_venta, values2, function(error, filas, campos){
-                    res.render('pages/catalogo')
-                })
+                connection.query(query_venta, values2, function(error, filas, campos) {
+                    if (error) {
+                        console.error('Error al insertar venta en la base de datos:', error);
+                        return res.status(500).send('Error al guardar la venta.');
+                    } else {
+                        
 
-                const tarjeta = {
-                    no1: req.body.no1,
-                    no2: req.body.no2,
-                    no3: req.body.no2,
-                    no4: req.body.no2,
-                    fecha: req.body.fecha,
-                    codigo: req.body.codigo
-                }
+                        // Generar el PDF
+                        const pdfDoc = new PDFDocument();
+                        
+                        const buffers = [];
+                        pdfDoc.on('data', buffer => buffers.push(buffer));
+                        pdfDoc.on('end', () => {
+                            const pdfBuffer = Buffer.concat(buffers);
+    
+                            // Configurar las cabeceras de respuesta para el PDF
+                            res.setHeader('Content-Type', 'application/pdf');
+                            res.setHeader('Content-Disposition', 'attachment; filename=documento.pdf');
+                            res.send(pdfBuffer);
+                        });
+    
+                        if (tipo === "1") {
+                            pdfDoc.text(`PAGO DE CONTADO`);
+                        } else if (tipo === "2") {
+                            pdfDoc.text(`NOTA DE CRÉDITO`);
+                            pdfDoc.text(`Tarjeta: ${tarjeta.no1} - ${tarjeta.no2} - ${tarjeta.no3} - ${tarjeta.no4}`);
+                            pdfDoc.text(`Fecha: ${tarjeta.fecha}`);
+                        }
+    
+                        // Añadir contenido común al PDF
+                        pdfDoc.text(`Nombre: ${cliente.nombre}`);
+                        pdfDoc.text(`Apellido: ${cliente.apellido}`);
+                        pdfDoc.text(`Dirección: ${cliente.direccion}`);
+                        pdfDoc.text(`Correo: ${cliente.correo}`);
+                        pdfDoc.text(`Teléfono: ${cliente.telefono}`);
+    
+                        // Finalizar el documento PDF
+                        pdfDoc.end();
 
-                if(tipo === "1"){
-                    const pdfDoc = new PDFDocument();
-
-                    // Crear un búfer de escritura para el PDF
-                    const buffers = [];
-                    pdfDoc.on('data', buffer => buffers.push(buffer));
-                    pdfDoc.on('end', () => {
-                        const pdfBuffer = Buffer.concat(buffers);
-
-                        // Configurar la respuesta HTTP para el PDF
-                        res.setHeader('Content-Type', 'application/pdf');
-                        res.setHeader('Content-Disposition', 'attachment; filename=documento.pdf');
-                        res.send(pdfBuffer);
-                    });
-
-                    // Añadir contenido al PDF
-                    pdfDoc.text(`PAGO DE CONTADO`);
-                    pdfDoc.text(`Nombre: ${cliente.nombre}`);
-                    pdfDoc.text(`Apellido: ${cliente.apellido}`);
-                    pdfDoc.text(`Dirección: ${cliente.direccion}`);
-                    pdfDoc.text(`Correo: ${cliente.correo}`);
-                    pdfDoc.text(`Teléfono: ${cliente.telefono}`);
-
-                    // Finalizar el documento PDF
-                    pdfDoc.end();
-
-                } else if(tipo === "2"){
-                    const pdfDoc = new PDFDocument();   
-
-                    // Crear un búfer de escritura para el PDF
-                    const buffers = [];
-                    pdfDoc.on('data', buffer => buffers.push(buffer));
-                    pdfDoc.on('end', () => {
-                        const pdfBuffer = Buffer.concat(buffers);
-
-                        // Configurar la respuesta HTTP para el PDF
-                        res.setHeader('Content-Type', 'application/pdf');
-                        res.setHeader('Content-Disposition', 'attachment; filename=documento.pdf');
-                        res.send(pdfBuffer);
-                    });
-
-                    // Añadir contenido al PDF
-                    pdfDoc.text(`NOTA DE CRÉDITO`);
-                    pdfDoc.text(`Nombre: ${cliente.nombre}`);
-                    pdfDoc.text(`Apellido: ${cliente.apellido}`);
-                    pdfDoc.text(`Dirección: ${cliente.direccion}`);
-                    pdfDoc.text(`Correo: ${cliente.correo}`);
-                    pdfDoc.text(`Teléfono: ${cliente.telefono}`);
-                    pdfDoc.text(`Tarjeta: ${tarjeta.no1} - ${tarjeta.no2} - ${tarjeta.no3} - ${tarjeta.no4}`);
-                    pdfDoc.text(`Fecha: ${cliente.fecha}`);
-
-                    // Finalizar el documento PDF
-                    pdfDoc.end();
-                } 
+                        // Redirigir al usuario a /catalogo
+                        
+                    }    
+                })   
             }    
         });
     })
     connection.close;
 });
+
 
 module.exports = router

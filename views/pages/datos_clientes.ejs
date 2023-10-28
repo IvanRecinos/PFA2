@@ -106,7 +106,7 @@
                         </div>
                     </center>
                     <center>
-                        <button class="btn" type="input">Realizar Pedido</button>
+                        <button class="btn" type="input" onClick="redireccion()">Realizar Pedido</button>
                     </center>
                 </form>
             </div>
@@ -124,6 +124,11 @@
                 } else if (selectedValue === "2") {
                     credito.style.display = 'block';
                 }
+            }
+            
+            function redireccion(){
+                console.log("hola");
+                window.location.href = "/catalogo";
             }
 
         </script>

@@ -78,6 +78,23 @@ input, textarea, select{
     cursor: pointer;
 }
 
+button{
+    width: 150px;
+    margin: 15px;
+    background-color: #7927EF;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    border-color: #7927EF;
+    text-align: center;
+}
+
+button:hover{
+    background-color: #832afe;
+    border-color: #842bff;
+    cursor: pointer;
+}
+
 .cancelar{
     margin: 15px;
     width: 140px;

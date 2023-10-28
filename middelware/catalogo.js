@@ -21,7 +21,7 @@ router.get('/catalogo', (req, res) => {
                     return res.status(500).send('Error al buscar el producto.');
                 } else {
                     res.render('pages/catalogo', {resultados_pasteles: resultado_pasteles});
-                    //console.log(resultado_pasteles);
+                    console.log(resultado_pasteles);
                 }    
             });
         })

@@ -10,41 +10,27 @@ var connection = mysql.createConnection({
     database: 'pasteles_pfa2'
 });
 
-router.get('/inventario/:id', function(req, res) {
-    let id = req.params.id;
-    
+router.get('/configuracion', function(req, res) {
     connection.connect(function(err){
-        const query_catalogo = `SELECT * FROM pasteles WHERE id_pastel = ?`;
-        connection.query(query_catalogo, [id], (error, resultado_pasteles) => {
+        const query_configuracion = `SELECT * FROM configuracion`;
+        connection.query(query_configuracion, (error, configuracion) => {
+            
             if (error) {
-                console.error('Error al buscar la lista de producto', error);
-                return res.status(500).send('Error al buscar el producto.');
+                console.error('Error al actualizar dias', error);
+                return res.status(500).send('Error al actualizar dias');
             } else {    
-                res.render('pages/inventario', {resultados_pasteles: resultado_pasteles[0]});
-            }    
+                console.log(configuracion);
+                res.render('pages/configuracion', {confi: configuracion});     
+            }       
         });
     })
     connection.close;
 });
 
-router.get('/producto_editar/:id', function(req, res) {
-    let id = req.params.id;
-    
-    connection.connect(function(err){
-        const query_catalogo = `SELECT * FROM pasteles WHERE id_pastel = ?`;
-        connection.query(query_catalogo, [id], (error, resultado_pasteles) => {
-            if (error) {
-                console.error('Error al buscar la lista de producto', error);
-                return res.status(500).send('Error al buscar el producto.');
-            } else {    
-                res.render('pages/producto_editar', {resultados_pasteles: resultado_pasteles[0]});
-            }    
-        });
-    })
-    connection.close;
-});
+router.post('/modificiar_inventario',  (req, res) => {        
 
-router.post('/editar_producto',  (req, res) => {        
+    let cantidad = parseFloat(req.body.cantidad);
+    let nueva_cantidad = parseFloat(req.body.nueva_cantidad);
 
     //Creando el nuevo objeto
     const editar_pastel = {
@@ -53,7 +39,7 @@ router.post('/editar_producto',  (req, res) => {
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
         ingredientes: req.body.ingredientes,
-        cantidad: req.body.cantidad,
+        cantidad: cantidad+ nueva_cantidad,
         imagen: req.body.imagen,
         fecha: req.body.fecha,
         precio: req.body.precio

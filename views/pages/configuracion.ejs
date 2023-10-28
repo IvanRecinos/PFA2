@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <%- include('../partials/header.ejs'); %>
+        <link rel="stylesheet" href="/static/css/vista_producto.css">
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs'); %>
+        <section>
+            <h1 style="text-align: center; margin-bottom: 25px;">Configuración</h1>
+        <div class="sect">
+            <form action="/modificiar_configuracion" method="POST" >
+                <div class="cont_form">
+                    <div class="producto"> 
+                        <div>
+                            <label for="actual">Días para descuento actual: <%= confi.dias %></label>
+                            <% console.log(confi.dias); %>
+                        </div>
+                        <div>
+                            <label for="dias">Días para descuento:</label>
+                            <input type="text" name="dias">
+                        </div>
+                        
+                        <div style="display: flex;">
+                            <button type="input">Guardar</button>
+                            <a class="cancelar" href="/admin">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <%- include('../partials/footer.ejs'); %>
+    </body>
+</html>

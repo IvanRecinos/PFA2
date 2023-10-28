@@ -39,5 +39,11 @@ aplicacion.use(inventario);
 const datos_clientes = require('./middelware/datos_clientes');
 aplicacion.use(datos_clientes);
 
+const clientes = require('./middelware/clientes');
+aplicacion.use(clientes);
+
+const configuracion = require('./middelware/configuracion');
+aplicacion.use(configuracion);
+
 
 aplicacion.listen(8888, () => {console.log("Servidor iniciado en el puerto 8888")});
