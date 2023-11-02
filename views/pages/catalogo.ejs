@@ -137,10 +137,10 @@
                     <div class="opt" id="no5">
                         <%  resultados_pasteles.forEach(function(resultados_pasteles) { %> 
                             <% 
-                                
+                                let dias_de_antiguedad = 7
                                 let fecha_varificar = resultados_pasteles.fecha
                                 let fechaPosterior = new Date(fecha_varificar)
-                                fechaPosterior.setDate(fechaPosterior.getDate() + 7)
+                                fechaPosterior.setDate(fechaPosterior.getDate() + (dias_de_antiguedad + 1))
                                 
                                 let fechaHoy = new Date(); 
                                 if (fechaPosterior > fechaHoy) {
